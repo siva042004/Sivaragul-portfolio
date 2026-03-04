@@ -14,7 +14,7 @@
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-  body { background: var(--bg); color: var(--text); font-family: var(--sans); overflow-x: hidden; cursor: none; }
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); overflow-x: hidden; cursor: default; }
   .cursor { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; opacity: 0; box-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent); }
   .cursor-ring { width: 30px; height: 30px; border: 1px solid var(--accent); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9998; opacity: 0; }
   body::before { content: ''; position: fixed; inset: 0; background-image: linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px); background-size: 40px 40px; pointer-events: none; z-index: 0; }
@@ -99,7 +99,7 @@
   footer { border-top: 1px solid var(--border); padding: 30px 60px; display: flex; justify-content: space-between; align-items: center; font-family: var(--mono); font-size: 11px; color: var(--muted); position: relative; z-index: 2; }
   .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
   .fade-in.visible { opacity: 1; transform: translateY(0); }
-  .recruiter-banner { position: fixed; bottom: 24px; right: 24px; z-index: 200; background: var(--accent2); color: var(--bg); font-family: var(--mono); font-size: 11px; font-weight: bold; letter-spacing: 2px; padding: 12px 20px; display: flex; align-items: center; gap: 10px; text-decoration: none; text-transform: uppercase; animation: pulse-banner 2s infinite; cursor: none; }
+  .recruiter-banner { position: fixed; bottom: 24px; right: 24px; z-index: 200; background: var(--accent2); color: var(--bg); font-family: var(--mono); font-size: 11px; font-weight: bold; letter-spacing: 2px; padding: 12px 20px; display: flex; align-items: center; gap: 10px; text-decoration: none; text-transform: uppercase; animation: pulse-banner 2s infinite; }
   .recruiter-banner:hover { background: #fff; }
   .pulse-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--bg); animation: pulse-dot 1.2s infinite; }
   @keyframes pulse-banner { 0%,100%{box-shadow:0 0 20px rgba(0,255,157,0.4)}50%{box-shadow:0 0 50px rgba(0,255,157,0.9)} }
@@ -134,10 +134,10 @@
 <nav>
   <div class="nav-logo">SM_PORTFOLIO.EXE</div>
   <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#about" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'});return false;">About</a></li>
+    <li><a href="#experience" onclick="document.getElementById('experience').scrollIntoView({behavior:'smooth'});return false;">Experience</a></li>
+    <li><a href="#projects" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'});return false;">Projects</a></li>
+    <li><a href="#contact" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'});return false;">Contact</a></li>
     <li><a href="resume.pdf" download="Sivaragul_M_Resume.pdf" style="color:var(--accent2);">⬇ Resume</a></li>
   </ul>
 </nav>
@@ -148,7 +148,7 @@
     <div class="hero-tag">FULL STACK SOFTWARE ENGINEER</div>
     <h1>SIVARA<span class="accent">GUL</span><br>M.</h1>
     <div class="hero-subtitle">// Full Stack Software Engineer</div>
-    <p class="hero-desc">B.E. Computer Science graduate (2025) from <strong style="color:var(--accent)">Saveetha Engineering College</strong>, specializing in Java, Spring Boot, React.js, and cloud-native systems. I build high-performance, production-ready applications that scale.</p>
+    <p class="hero-desc">B.E. Computer Science graduate (2025) from <strong style="color:var(--accent)">Anna University</strong>, specializing in Java, Spring Boot, React.js, and cloud-native systems. I build high-performance, production-ready applications that scale.</p>
     <div class="highlight-strip">
       ✦ <span>Java · Spring Boot · React.js · AWS · Docker</span> &nbsp;|&nbsp; Microservices · CI/CD · REST APIs<br>
       ✦ Reduced API latency <span>20%</span> · Achieved <span>99.2% uptime</span> · Scaled to <span>500+ concurrent users</span><br>
@@ -161,7 +161,7 @@
       <div class="stat"><span class="stat-num">500+</span><span class="stat-label">Concurrent Users</span></div>
     </div>
     <div class="hero-btns">
-      <a href="#projects" class="btn btn-primary">View Projects</a>
+      <a href="#projects" class="btn btn-primary" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'});return false;">View Projects</a>
       <a href="#contact" class="btn btn-ghost">Get In Touch</a>
       <a href="resume.pdf" download="Sivaragul_M_Resume.pdf" class="btn btn-ghost" style="border-color:var(--accent2);color:var(--accent2);">⬇ Resume</a>
     </div>
@@ -369,8 +369,13 @@
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursorRing');
   let mx = window.innerWidth/2, my = window.innerHeight/2, rx = mx, ry = my;
+  let cursorActive = false;
 
   document.addEventListener('mousemove', e => {
+    if (!cursorActive) {
+      cursorActive = true;
+      document.body.style.cursor = 'none';
+    }
     mx = e.clientX; my = e.clientY;
     cursor.style.left = (mx - 4) + 'px';
     cursor.style.top = (my - 4) + 'px';
@@ -378,7 +383,7 @@
     ring.style.opacity = '0.5';
   });
   document.addEventListener('mouseleave', () => { cursor.style.opacity = '0'; ring.style.opacity = '0'; });
-  document.addEventListener('mouseenter', () => { cursor.style.opacity = '1'; ring.style.opacity = '0.5'; });
+  document.addEventListener('mouseenter', () => { if(cursorActive){ cursor.style.opacity = '1'; ring.style.opacity = '0.5'; }});
 
   function animRing() {
     rx += (mx - rx - 15) * 0.12;
