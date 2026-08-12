@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sivaragul M — Full Stack Java Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg1:#04050a;
+  --bg2:#071024;
+  --accent1:#ff007a; /* neon magenta */
+  --accent2:#00fff0; /* neon cyan */
+  --line:rgba(255,255,255,0.06);
+  --muted:#9aa3b2;
+  --text:#f3fbff;
+}
+/* animated layered neon background */
+body{font-family:'Space Grotesk',sans-serif;min-height:100vh;color:var(--text);background:linear-gradient(180deg,var(--bg1),var(--bg2));position:relative;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;z-index:0;background:radial-gradient(600px 300px at 10% 20%, rgba(0,255,240,0.08), transparent),radial-gradient(500px 260px at 90% 80%, rgba(255,0,122,0.07), transparent);mix-blend-mode:screen;animation:shift 12s linear infinite}
+@keyframes shift{0%{transform:translateY(0)}50%{transform:translateY(-30px)}100%{transform:translateY(0)}}
+
+.mono{font-family:'IBM Plex Mono',monospace}
+a{color:inherit}
+nav{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:18px 36px;background:linear-gradient(180deg,rgba(0,0,0,0.25),rgba(0,0,0,0.08));backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.brand{font-family:'IBM Plex Mono',monospace;font-size:14px;color:var(--accent1)}
+.brand b{color:var(--text)}
+.navlinks{display:flex;gap:28px;font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--muted)}
+.navlinks a{text-decoration:none;transition:color .15s}
+.navlinks a:hover{color:var(--accent2)}
+
+.hero{position:relative;padding:80px 40px 60px;max-width:1200px;margin:0 auto;z-index:1}
+.hero-top{display:grid;grid-template-columns:1.1fr 0.9fr;gap:56px;align-items:center}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--accent2);letter-spacing:.14em;margin-bottom:18px;display:flex;align-items:center;gap:8px}
+.eyebrow::before{content:'●';font-size:9px}
+/* Glitch headline for dramatic effect */
+h1{font-size:clamp(38px,6vw,72px);font-weight:800;line-height:1.02;letter-spacing:-.01em;margin-bottom:18px;position:relative}
+.glitch{display:inline-block;position:relative}
+.glitch::before,.glitch::after{content:attr(data-text);position:absolute;left:0;top:0;width:100%;overflow:hidden}
+.glitch::before{color:var(--accent2);mix-blend-mode:screen;animation:glitchTop 2.8s infinite linear;clip-path:rect(0,9999px,40px,0)}
+.glitch::after{color:var(--accent1);mix-blend-mode:screen;animation:glitchBottom 3s infinite linear;clip-path:rect(45px,9999px,9999px,0)}
+@keyframes glitchTop{0%{transform:translate(0,0)}10%{transform:translate(-4px,-2px)}20%{transform:translate(2px,1px)}30%{transform:translate(-2px,0)}100%{transform:translate(0,0)}}
+@keyframes glitchBottom{0%{transform:translate(0,0)}15%{transform:translate(4px,2px)}25%{transform:translate(-3px,-1px)}35%{transform:translate(1px,0)}100%{transform:translate(0,0)}}
+
+.lede{font-size:16px;color:var(--muted);line-height:1.7;max-width:54ch;margin-bottom:32px}
+.cta{display:flex;gap:14px}
+.btn{font-family:'IBM Plex Mono',monospace;font-size:13px;padding:12px 24px;border-radius:6px;text-decoration:none;transition:transform .18s,box-shadow .18s}
+.btn.solid{background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#041018;font-weight:700;box-shadow:0 8px 30px rgba(0,255,240,0.06),0 2px 6px rgba(255,0,122,0.06);border:none}
+.btn.solid:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(0,255,240,0.12),0 4px 10px rgba(255,0,122,0.08)}
+.btn.line{border:1px solid rgba(255,255,255,0.06);color:var(--text);background:transparent}
+.btn.line:hover{border-color:var(--accent2);color:var(--accent2)}
+
+.schema{background:rgba(255,255,255,0.02);border:1px solid var(--line);border-radius:12px;padding:26px 20px}
+.schema-label{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--muted);letter-spacing:.1em;margin-bottom:18px;display:flex;justify-content:space-between}
+svg{width:100%;height:auto;display:block}
+.node-box{fill:rgba(0,0,0,0.35);stroke:var(--line);stroke-width:1}
+.node-box.active{stroke:var(--accent2);filter:drop-shadow(0 4px 18px rgba(0,255,240,0.06))}
+.node-text{font-family:'IBM Plex Mono',monospace;font-size:10px;fill:var(--text)}
+.node-sub{font-family:'IBM Plex Mono',monospace;font-size:8px;fill:var(--muted)}
+.flow-line{stroke:var(--line);stroke-width:1.5;fill:none}
+.packet{fill:var(--accent1);filter:drop-shadow(0 6px 16px rgba(255,0,122,0.08));animation:packetGlow 3.2s linear infinite}
+@keyframes packetGlow{0%{opacity:0}8%{opacity:1}92%{opacity:1}100%{opacity:0}}
+.resp-200{font-family:'IBM Plex Mono',monospace;font-size:9px;fill:var(--accent2)}
+.resp-429{font-family:'IBM Plex Mono',monospace;font-size:9px;fill:#ff7a5e}
+
+.strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:70px}
+.strip-grid{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr)}
+.strip-item{padding:26px 48px;border-left:1px solid var(--line)}
+.strip-item:first-child{border-left:none}
+.strip-val{font-family:'IBM Plex Mono',monospace;font-size:22px;color:var(--accent1);font-weight:700}
+.strip-lbl{font-size:11.5px;color:var(--muted);margin-top:4px}
+
+section{max-width:1180px;margin:0 auto;padding:90px 48px}
+.tag{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--accent2);letter-spacing:.14em;margin-bottom:12px}
+h2{font-size:clamp(26px,3.4vw,38px);font-weight:700;margin-bottom:44px;letter-spacing:-.01em}
+h2 em{font-style:normal;color:var(--accent1)}
+
+.stackrow{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.stackcell{padding:20px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.stackcell:nth-child(4n){border-right:none}
+.stackcat{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--accent1);letter-spacing:.08em;margin-bottom:10px}
+.stackitem{font-size:14px;line-height:1.9;color:var(--text)}
+
+.proj{border:1px solid var(--line);border-radius:10px;margin-bottom:20px;overflow:hidden;transition:transform .18s,box-shadow .18s}
+.proj:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(0,0,0,0.6)}
+.proj-head{display:flex;justify-content:space-between;align-items:center;padding:20px 28px;background:rgba(0,0,0,0.25)}
+.proj-title{font-size:19px;font-weight:800}
+.proj-idx{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted)}
+.proj-body{padding:24px 28px}
+.proj-desc{font-size:14px;color:var(--muted);line-height:1.75;margin-bottom:18px;max-width:80ch}
+.proj-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.ptag{font-family:'IBM Plex Mono',monospace;font-size:10.5px;padding:5px 11px;border:1px solid var(--line);border-radius:20px;color:var(--muted)}
+.proj-link{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--accent1);text-decoration:none}
+.proj-link:hover{text-decoration:underline}
+
+.job{display:grid;grid-template-columns:170px 1fr;gap:24px;padding:26px 0;border-top:1px solid var(--line)}
+.job:last-child{border-bottom:1px solid var(--line)}
+.job-date{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted)}
+.job-role{font-size:17px;font-weight:700;margin-bottom:3px}
+.job-org{font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--accent1);margin-bottom:12px}
+.job ul{padding-left:18px;color:var(--muted);font-size:13.5px;line-height:1.8}
+
+.edurow{display:flex;justify-content:space-between;align-items:center;border:1px solid var(--line);border-radius:10px;padding:26px 28px;flex-wrap:wrap;gap:16px}
+.edu-deg{font-size:17px;font-weight:700}
+.edu-sch{font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--muted);margin-top:4px}
+.edu-yr{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--accent1)}
+
+.connect{text-align:center;padding-bottom:100px}
+.connect p{color:var(--muted);font-size:15px;margin-bottom:36px}
+.connect-links{display:flex;justify-content:center;gap:18px;flex-wrap:wrap}
+.clink{font-family:'IBM Plex Mono',monospace;font-size:13px;padding:14px 26px;border:1px solid var(--line);border-radius:6px;text-decoration:none;transition:all .2s}
+.clink:hover{border-color:var(--accent2);color:var(--accent2)}
+
+footer{text-align:center;padding:30px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--muted);border-top:1px solid var(--line)}
+
+@media(max-width:860px){
+  nav{padding:18px 24px}
+  .navlinks{display:none}
+  .hero{padding:60px 24px 40px}
+  .hero-top{grid-template-columns:1fr}
+  .strip-grid{grid-template-columns:repeat(2,1fr)}
+  .strip-item{border-left:none;border-top:1px solid var(--line)}
+  .strip-item:nth-child(odd){border-right:1px solid var(--line)}
+  section{padding:56px 24px}
+  .stackrow{grid-template-columns:repeat(2,1fr)}
+  .stackcell:nth-child(2n){border-right:none}
+  .job{grid-template-columns:1fr;gap:6px}
+  .edurow{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand mono">&lt;<b>siva</b>042004/&gt;</div>
+  <div class="navlinks">
+    <a href="#work">work</a>
+    <a href="#stack">stack</a>
+    <a href="#exp">experience</a>
+    <a href="#connect">connect</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-top">
+    <div>
+      <div class="eyebrow mono">open to full-time roles · bengaluru</div>
+      <h1 class="glitch" data-text="I build backend systems that don't fall over under load.">I build backend systems that don't fall over under load.</h1>
+      <p class="lede">Full Stack Java Developer working in Spring Boot and React.js — currently focused on distributed systems: rate limiting, circuit breaking, and the infrastructure that keeps APIs alive when things go wrong.</p>
+      <div class="cta">
+        <a href="#work" class="btn solid">See the work</a>
+        <a href="mailto:msan6848@gmail.com" class="btn line">Email me</a>
+      </div>
+    </div>
+
+    <div class="schema">
+      <div class="schema-label">
+        <span>request_flow.svg</span>
+        <span>live</span>
+      </div>
+      <svg viewBox="0 0 340 130">
+        <path class="flow-line" d="M20,40 L120,40 L120,90 L220,90 L220,40 L320,40"/>
+        <rect class="node-box active" x="0" y="26" width="60" height="28" rx="4"/>
+        <text class="node-text" x="8" y="44">Client</text>
+
+        <rect class="node-box" x="90" y="26" width="70" height="28" rx="4"/>
+        <text class="node-text" x="98" y="41">Gateway</text>
+        <text class="node-sub" x="98" y="50">route + auth</text>
+
+        <rect class="node-box" x="90" y="76" width="70" height="28" rx="4"/>
+        <text class="node-text" x="96" y="91">Rate Limit</text>
+        <text class="node-sub" x="96" y="100">redis · lua</text>
+
+        <rect class="node-box" x="190" y="76" width="70" height="28" rx="4"/>
+        <text class="node-text" x="197" y="91">Circuit Brk</text>
+        <text class="node-sub" x="197" y="100">resilience4j</text>
+
+        <rect class="node-box active" x="290" y="26" width="46" height="28" rx="4"/>
+        <text class="node-text" x="297" y="44">Service</text>
+
+        <circle class="packet p1" r="3"/>
+        <circle class="packet p2" r="3"/>
+
+        <text class="resp-200" x="292" y="118">200 OK</text>
+        <text class="resp-429" x="192" y="118">429</text>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<div class="strip">
+  <div class="strip-grid">
+    <div class="strip-item">
+      <div class="strip-val mono">2</div>
+      <div class="strip-lbl mono">rate-limit algorithms shipped</div>
+    </div>
+    <div class="strip-item">
+      <div class="strip-val mono">3</div>
+      <div class="strip-lbl mono">full-stack apps built end-to-end</div>
+    </div>
+    <div class="strip-item">
+      <div class="strip-val mono">K8s</div>
+      <div class="strip-lbl mono">container orchestration</div>
+    </div>
+    <div class="strip-item">
+      <div class="strip-val mono">CI/CD</div>
+      <div class="strip-lbl mono">automated via GitHub Actions</div>
+    </div>
+  </div>
+</div>
+
+<section id="stack">
+  <div class="tag mono">// stack</div>
+  <h2>What I build <em>with</em></h2>
+  <div class="stackrow">
+    <div class="stackcell">
+      <div class="stackcat mono">BACKEND</div>
+      <div class="stackitem">Java</div>
+      <div class="stackitem">Spring Boot</div>
+      <div class="stackitem">Spring Security</div>
+      <div class="stackitem">JWT · Redis</div>
+    </div>
+    <div class="stackcell">
+      <div class="stackcat mono">FRONTEND</div>
+      <div class="stackitem">React.js</div>
+      <div class="stackitem">Redux</div>
+      <div class="stackitem">TypeScript</div>
+      <div class="stackitem">WebSocket</div>
+    </div>
+    <div class="stackcell">
+      <div class="stackcat mono">INFRA</div>
+      <div class="stackitem">AWS</div>
+      <div class="stackitem">Docker</div>
+      <div class="stackitem">Kubernetes</div>
+      <div class="stackitem">GitHub Actions</div>
+    </div>
+    <div class="stackcell">
+      <div class="stackcat mono">DATA / TEST</div>
+      <div class="stackitem">MySQL</div>
+      <div class="stackitem">JUnit5 · Mockito</div>
+      <div class="stackitem">Swagger</div>
+      <div class="stackitem">Postman</div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="tag mono">// selected work</div>
+  <h2>Things I've <em>shipped</em></h2>
+
+  <div class="proj">
+    <div class="proj-head">
+      <div class="proj-title">Distributed Rate Limiter & API Gateway</div>
+      <div class="proj-idx mono">01 / 03</div>
+    </div>
+    <div class="proj-body">
+      <p class="proj-desc">A distributed API gateway handling request routing, auth forwarding, and traffic management. Token Bucket and Sliding Window rate limiting, implemented as atomic Redis Lua scripts, backed by a Resilience4j circuit breaker for downstream resilience. Load-tested for concurrent traffic and correct HTTP 429 handling.</p>
+      <div class="proj-tags">
+        <span class="ptag">Spring Boot</span><span class="ptag">Redis</span><span class="ptag">Resilience4j</span><span class="ptag">Docker</span><span class="ptag">AWS</span>
+      </div>
+      <a href="https://github.com/siva042004" class="proj-link mono">view code →</a>
+    </div>
+  </div>
+
+  <div class="proj">
+    <div class="proj-head">
+      <div class="proj-title">Distributed Job Scheduling Platform</div>
+      <div class="proj-idx mono">02 / 03</div>
+    </div>
+    <div class="proj-body">
+      <p class="proj-desc">Real-time scheduling platform with a React monitoring dashboard — WebSocket-driven live updates, execution history, and failure alerts. Test scenarios cover positive, negative, and boundary cases including network failures and concurrent processing. Containerized and deployed on Kubernetes.</p>
+      <div class="proj-tags">
+        <span class="ptag">Spring Boot</span><span class="ptag">Kafka</span><span class="ptag">Kubernetes</span><span class="ptag">WebSocket</span><span class="ptag">React.js</span>
+      </div>
+      <a href="https://github.com/siva042004" class="proj-link mono">view code →</a>
+    </div>
+  </div>
+
+  <div class="proj">
+    <div class="proj-head">
+      <div class="proj-title">Multi-Tenant SaaS Billing & Subscription Engine</div>
+      <div class="proj-idx mono">03 / 03</div>
+    </div>
+    <div class="proj-body">
+      <p class="proj-desc">Multi-tenant billing dashboard for subscription management and real-time payment sync. React frontend flows tested against edge cases — failed payments, prorated upgrades, concurrent operations. Deployed with Docker and GitHub Actions CI/CD.</p>
+      <div class="proj-tags">
+        <span class="ptag">Spring Boot</span><span class="ptag">React.js</span><span class="ptag">Stripe</span><span class="ptag">Docker</span><span class="ptag">AWS</span>
+      </div>
+      <a href="https://github.com/siva042004" class="proj-link mono">view code →</a>
+    </div>
+  </div>
+</section>
+
+<section id="exp">
+  <div class="tag mono">// experience</div>
+  <h2>Where I've <em>worked</em></h2>
+
+  <div class="job">
+    <div class="job-date mono">Jul 2024 – Jan 2025<br/>Bengaluru</div>
+    <div>
+      <div class="job-role">Full Stack Java Developer Training</div>
+      <div class="job-org mono">JSPiders</div>
+      <ul>
+        <li>Shipped 3 full-stack applications end-to-end using Spring Boot, React.js, MySQL, Docker, and AWS</li>
+        <li>Built scalable React.js dashboards while strengthening software quality practices</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="job">
+    <div class="job-date mono">May 2023 – Jun 2023<br/>Chennai</div>
+    <div>
+      <div class="job-role">Web Development Intern</div>
+      <div class="job-org mono">Connect Info System Pvt. Ltd</div>
+      <ul>
+        <li>Optimized frontend-backend integration, improving overall application performance</li>
+        <li>Containerized applications with Docker and set up GitHub Actions CI/CD pipelines</li>
+        <li>Tested, debugged, and resolved UI/UX and data-flow issues</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="tag mono">// education</div>
+  <h2>Background</h2>
+  <div class="edurow">
+    <div>
+      <div class="edu-deg">B.E. Computer Science Engineering</div>
+      <div class="edu-sch mono">Saveetha Engineering College, Anna University</div>
+    </div>
+    <div class="edu-yr">2021 — 2025</div>
+  </div>
+</section>
+
+<section id="connect" class="connect">
+  <div class="tag mono" style="justify-content:center;display:flex">// connect</div>
+  <h2>Let's build <em>something reliable</em></h2>
+  <p>Open to full-time Full Stack Java Developer roles — Bengaluru & remote.</p>
+  <div class="connect-links">
+    <a href="mailto:msan6848@gmail.com" class="clink">msan6848@gmail.com</a>
+    <a href="https://github.com/siva042004" class="clink">github/siva042004</a>
+    <a href="https://linkedin.com/in/sivaragul-m-4496682ba" class="clink">linkedin</a>
+  </div>
+</section>
+
+<footer>Sivaragul M · Bengaluru, India</footer>
+
+</body>
+</html>
