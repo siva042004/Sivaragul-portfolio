@@ -35,7 +35,7 @@ body.t-black { --c-bg: #000000; --c-text: #FFFFFF; }
 .nav-links { display: flex; gap: 40px; }
 
 /* SUMMARY */
-.sec-summary { min-height: 100vh; display: flex; align-items: center; padding: 0 5%; background: var(--c-bg); transition: background 0.8s; }
+.sec-summary { min-height: 100vh; display: flex; align-items: center; padding: 0 5%; transition: background 0.8s; }
 .summary-container { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; width: 100%; max-width: 1600px; margin: 0 auto; }
 .summary-container h2 { font-size: clamp(40px, 6vw, 100px); font-weight: 800; line-height: 0.9; letter-spacing: -0.04em; }
 .summary-text { font-size: 24px; font-weight: 300; line-height: 1.6; color: var(--c-mute); max-width: 600px; }
@@ -146,7 +146,7 @@ body.t-black { --c-bg: #000000; --c-text: #FFFFFF; }
 .exp-details p { font-size: 18px; font-weight: 300; line-height: 1.6; max-width: 500px; color: var(--c-mute); }
 
 /* 05 / THE ENGINEER */
-.sec-about { min-height: 100vh; display: flex; align-items: center; padding: 200px 5%; background: var(--c-bg); transition: background 0.8s; }
+.sec-about { min-height: 100vh; display: flex; align-items: center; padding: 200px 5%; transition: background 0.8s; }
 .about-container { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; width: 100%; max-width: 1600px; margin: 0 auto; }
 .ac-left h2 { font-size: clamp(60px, 8vw, 140px); font-weight: 800; line-height: 0.85; letter-spacing: -0.04em; }
 .ac-right { display: flex; flex-direction: column; gap: 60px; justify-content: flex-end; }
@@ -176,7 +176,7 @@ body.t-black { --c-bg: #000000; --c-text: #FFFFFF; }
 .hud-sub { font-size: 10px; opacity: 0.6; margin-top: 2px; }
 
 /* 06 / CONTACT */
-.sec-contact { min-height: 100vh; display: flex; flex-direction: column; justify-content: space-between; padding: 200px 5% 80px; background: var(--c-bg); transition: background 0.8s; }
+.sec-contact { min-height: 100vh; display: flex; flex-direction: column; justify-content: space-between; padding: 200px 5% 80px; transition: background 0.8s; }
 .contact-statement { font-size: clamp(40px, 7vw, 120px); font-weight: 400; line-height: 0.95; letter-spacing: -0.02em; opacity: 0.9; }
 .contact-footer { display: flex; justify-content: space-between; align-items: flex-end; }
 .cf-left { font-size: 14px; font-weight: 500; line-height: 1.6; }

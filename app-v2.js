@@ -109,6 +109,34 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // 6. THEME TRANSITIONS
+  const shapeMap = {
+    '#summary': 'torus',
+    '#work': 'tunnel',
+    '#stack': 'random',
+    '#experience': 'terrain',
+    '#about': 'torus',
+    '#globe-section': 'hide',
+    '#contact': 'grid'
+  };
+  const colorMap = {
+    't-ivory': 0x000000,
+    't-white': 0x000000,
+    't-dark': 0xffffff,
+    't-gray': 0x111111,
+    't-black': 0xffffff
+  };
+  const updateGlobal3D = (sec) => {
+    document.body.className = sec.theme;
+    if(window.global3DCanvas) {
+      if(shapeMap[sec.id] === 'hide') {
+        window.global3DCanvas.style.opacity = '0';
+      } else {
+        window.global3DCanvas.style.opacity = '1';
+        if(window.morphGlobalParticles) window.morphGlobalParticles(shapeMap[sec.id]);
+        if(window.global3DMaterial) window.global3DMaterial.color.setHex(colorMap[sec.theme]);
+      }
+    }
+  };
   const sections = [
     { id: '#summary', theme: 't-ivory' },
     { id: '#work', theme: 't-dark' },
@@ -123,8 +151,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if(el) {
       ScrollTrigger.create({
         trigger: el, start: "top 50%", end: "bottom 50%",
-        onEnter: () => document.body.className = sec.theme,
-        onEnterBack: () => document.body.className = sec.theme
+        onEnter: () => updateGlobal3D(sec),
+        onEnterBack: () => updateGlobal3D(sec)
       });
     }
   });
