@@ -155,15 +155,35 @@ body.t-black { --c-bg: #000000; --c-text: #FFFFFF; }
 .es-value { font-size: 20px; font-weight: 300; line-height: 1.6; }
 .es-value .prin { display: block; font-size: 28px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 12px; transform-origin: left center; }
 
+/* 05.5 / GLOBE SECTION */
+.sec-globe { height: 100vh; position: relative; overflow: hidden; background: #000; color: #fff; display: flex; align-items: center; }
+.globe-ui { position: absolute; z-index: 10; width: 100%; height: 100%; padding: 0 5%; display: flex; align-items: center; pointer-events: none; }
+.gui-left { width: 40%; display: flex; flex-direction: column; pointer-events: auto; }
+.gui-eyebrow { font-size: 14px; font-weight: 700; letter-spacing: 0.2em; opacity: 0.5; margin-bottom: 24px; }
+.gui-left h2 { font-size: clamp(40px, 5vw, 80px); font-weight: 800; line-height: 0.9; letter-spacing: -0.04em; margin-bottom: 24px; }
+.gui-desc { font-size: 18px; font-weight: 300; line-height: 1.6; opacity: 0.7; margin-bottom: 60px; }
+.gui-projects { display: flex; flex-direction: column; gap: 24px; }
+.gp-item { cursor: pointer; opacity: 0.5; transition: opacity 0.3s, transform 0.3s; transform-origin: left center; }
+.gp-item:hover, .gp-item.active { opacity: 1; transform: translateX(20px); }
+.gp-num { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; margin-bottom: 4px; }
+.gp-title { font-size: 18px; font-weight: 600; letter-spacing: -0.02em; }
+#globe-canvas { position: absolute; top: 0; right: -10%; width: 70%; height: 100%; z-index: 1; cursor: crosshair; }
+#hud-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 5; pointer-events: none; }
+.hud-annotation { position: absolute; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; opacity: 0; transition: opacity 0.3s; pointer-events: auto; cursor: pointer; }
+.hud-annotation.active, .hud-annotation:hover { opacity: 1; }
+.hud-dot { width: 8px; height: 8px; background: #fff; border-radius: 50%; margin-bottom: 8px; box-shadow: 0 0 10px rgba(255,255,255,0.5); }
+.hud-label { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; background: rgba(0,0,0,0.8); padding: 4px 8px; border: 1px solid rgba(255,255,255,0.2); }
+.hud-sub { font-size: 10px; opacity: 0.6; margin-top: 2px; }
+
 /* 06 / CONTACT */
-.sec-contact { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 0 5%; position: relative; }
-.contact-interactive { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; gap: 60px; }
-#ci-status { font-family: monospace; font-size: 14px; opacity: 0.5; letter-spacing: 0.1em; margin-bottom: -20px; }
-.ci-main { font-size: clamp(60px, 12vw, 240px); font-weight: 800; line-height: 0.85; letter-spacing: -0.05em; text-align: center; }
-.ci-nodes { display: flex; gap: 40px; margin-top: 40px; }
-.ci-node { font-size: 14px; font-weight: 700; letter-spacing: 0.2em; border: 1px solid currentColor; padding: 16px 32px; border-radius: 40px; transition: background 0.3s, color 0.3s; }
-.ci-node:hover { background: var(--c-text); color: var(--c-bg); }
-.contact-footer { position: absolute; bottom: 40px; left: 5%; width: 90%; display: flex; justify-content: space-between; border-top: 1px solid rgba(128,128,128,0.2); padding-top: 24px; font-size: 12px; font-weight: 600; opacity: 0.5; letter-spacing: 0.1em; }
+.sec-contact { min-height: 100vh; display: flex; flex-direction: column; justify-content: space-between; padding: 200px 5% 80px; background: var(--c-bg); transition: background 0.8s; }
+.contact-statement { font-size: clamp(60px, 12vw, 200px); font-weight: 800; line-height: 0.85; letter-spacing: -0.04em; }
+.contact-footer { display: flex; justify-content: space-between; align-items: flex-end; }
+.cf-left { font-size: 14px; font-weight: 500; line-height: 1.6; }
+.cf-right { display: flex; flex-direction: column; gap: 16px; align-items: flex-end; }
+.cf-link { font-size: 24px; font-weight: 700; position: relative; overflow: hidden; padding-bottom: 4px; }
+.cf-link::after { content: ''; position: absolute; left: 0; bottom: 0; width: 100%; height: 2px; background: currentColor; transform: translateX(-101%); transition: transform 0.4s cubic-bezier(0.8,0,0.2,1); }
+.cf-link:hover::after { transform: translateX(0); }
 
 /* CASE STUDY */
 #case-study-overlay { position: fixed; inset: 0; background: #F3F0E8; color: #111; z-index: 5000; overflow-y: auto; opacity: 0; pointer-events: none; transform: translateY(100%); transition: transform 0.8s cubic-bezier(0.8,0,0.2,1), opacity 0.8s; }

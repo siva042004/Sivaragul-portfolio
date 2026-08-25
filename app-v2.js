@@ -129,6 +129,26 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // 6.5 GLOBE ANIMATIONS
+  ScrollTrigger.create({
+    trigger: '#globe-section',
+    start: "top 80%",
+    end: "bottom 20%",
+    onUpdate: (self) => {
+      let progress = self.progress;
+      if (progress < 0.3) {
+        window.globeEntrance = progress / 0.3;
+        window.globeExit = 0;
+      } else if (progress > 0.7) {
+        window.globeEntrance = 1;
+        window.globeExit = (progress - 0.7) / 0.3;
+      } else {
+        window.globeEntrance = 1;
+        window.globeExit = 0;
+      }
+    }
+  });
+
   // 7. WORK GALLERY (HORIZONTAL SCROLL)
   const workSec = document.querySelector('.sec-work');
   const gallery = document.querySelector('.gallery-container');

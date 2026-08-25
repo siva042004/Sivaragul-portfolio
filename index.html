@@ -288,25 +288,49 @@
       </div>
     </section>
 
-    <!-- 05.5 / GLOBE -->
-    <section id="globe-section" style="height: 100vh; position: relative; overflow: hidden; background: #000; display: flex; align-items: center; justify-content: center; flex-direction: column;">
-      <h2 style="position: absolute; top: 10%; z-index: 10; color: #fff; font-size: clamp(24px, 4vw, 40px); font-weight: 800; letter-spacing: 0.2em; opacity: 0.8;">GLOBAL INFRASTRUCTURE</h2>
-      <canvas id="globe-canvas" style="width: 100%; height: 100%; cursor: crosshair;"></canvas>
+    <!-- 05.5 / GLOBE SYSTEM MAP -->
+    <section id="globe-section" class="sec-globe">
+      <div class="globe-ui">
+        <div class="gui-left">
+          <div class="gui-eyebrow">05 / SYSTEM MAP</div>
+          <h2 class="react-text" id="globe-title">EVERYTHING<br>CONNECTS.</h2>
+          <p class="gui-desc">A visual map of the technologies, systems and patterns<br>I use to turn ideas into working software.</p>
+
+          <div class="gui-projects">
+            <div class="gp-item react-mag" data-project="p1">
+              <div class="gp-num">PROJECT 01</div>
+              <div class="gp-title">DISTRIBUTED JOB SCHEDULER</div>
+            </div>
+            <div class="gp-item react-mag" data-project="p2">
+              <div class="gp-num">PROJECT 02</div>
+              <div class="gp-title">SAAS BILLING ENGINE</div>
+            </div>
+            <div class="gp-item react-mag" data-project="p3">
+              <div class="gp-num">PROJECT 03</div>
+              <div class="gp-title">DISTRIBUTED RATE LIMITER</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <canvas id="globe-canvas"></canvas>
+      <div id="hud-container"></div>
     </section>
 
     <!-- 06 / CONTACT -->
     <section id="contact" class="sec-contact">
-      <div class="contact-interactive">
-        <div class="ci-status" id="ci-status">STATUS: IDLE</div>
-        <a href="mailto:msan6848@gmail.com" class="ci-main react-text" id="ci-trigger">INITIATE<br>HANDSHAKE</a>
-        <div class="ci-nodes">
-          <a href="https://linkedin.com/in/sivaragul-m-4496682ba" target="_blank" class="ci-node react-mag">LINKEDIN</a>
-          <a href="https://github.com/siva042004" target="_blank" class="ci-node react-mag">GITHUB</a>
-          <a href="resume.pdf" target="_blank" class="ci-node react-mag">RESUME</a>
-        </div>
+      <div class="contact-statement">
+        <h2 class="react-text">LET'S BUILD<br>SOMETHING<br>USEFUL.</h2>
       </div>
       <div class="contact-footer">
-        <div class="cf-copy">© 2026 SIVA RAGUL — ALL SYSTEMS NOMINAL.</div>
+        <div class="cf-left">
+          <p>SIVA RAGUL</p>
+          <p style="opacity:0.5;">JAVA FULL STACK DEVELOPER</p>
+        </div>
+        <div class="cf-right">
+          <a href="mailto:msan6848@gmail.com" class="cf-link react-mag">EMAIL</a>
+          <a href="https://linkedin.com/in/sivaragul-m-4496682ba" target="_blank" class="cf-link react-mag">LINKEDIN</a>
+          <a href="https://github.com/siva042004" target="_blank" class="cf-link react-mag">GITHUB</a>
+        </div>
       </div>
     </section>  </section>
   </main>
