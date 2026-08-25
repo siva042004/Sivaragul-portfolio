@@ -110,10 +110,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 6. THEME TRANSITIONS
   const sections = [
-    { id: '#work', theme: 't-ivory' },
+    { id: '#summary', theme: 't-ivory' },
+    { id: '#work', theme: 't-dark' },
     { id: '#stack', theme: 't-white' },
     { id: '#experience', theme: 't-gray' },
-    { id: '#about', theme: 't-dark' },
+    { id: '#about', theme: 't-ivory' },
     { id: '#contact', theme: 't-black' }
   ];
   sections.forEach(sec => {

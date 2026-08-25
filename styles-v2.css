@@ -34,6 +34,13 @@ body.t-black { --c-bg: #000000; --c-text: #FFFFFF; }
 .nav-brand { font-weight: 800; letter-spacing: 0.05em; }
 .nav-links { display: flex; gap: 40px; }
 
+/* SUMMARY */
+.sec-summary { min-height: 100vh; display: flex; align-items: center; padding: 0 5%; background: var(--c-bg); transition: background 0.8s; }
+.summary-container { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; width: 100%; max-width: 1600px; margin: 0 auto; }
+.summary-container h2 { font-size: clamp(40px, 6vw, 100px); font-weight: 800; line-height: 0.9; letter-spacing: -0.04em; }
+.summary-text { font-size: 24px; font-weight: 300; line-height: 1.6; color: var(--c-mute); max-width: 600px; }
+@media (max-width: 1024px) { .summary-container { grid-template-columns: 1fr; gap: 40px; } }
+
 /* HERO */
 .sec-hero { height: 100vh; position: fixed; top: 0; left: 0; width: 100%; z-index: 10; display: flex; flex-direction: column; justify-content: center; padding: 0 5%; overflow: hidden; background: #111111; color: #F3F0E8; }
 .hero-bg-container { position: absolute; inset: 0; z-index: 1; opacity: 0.4; }
