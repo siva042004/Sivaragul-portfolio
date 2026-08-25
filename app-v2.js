@@ -573,7 +573,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if(!pId) return;
       const data = csData[pId];
       
-      document.getElementById('cs-title').innerText = data.title;
+      document.getElementById('cs-title').innerText = data.title; document.getElementById('cs-overview').innerText = data.overview;
       document.getElementById('cs-problem').innerText = data.problem;
       document.getElementById('cs-arch').innerText = data.arch;
       document.getElementById('cs-impl').innerText = data.impl;
