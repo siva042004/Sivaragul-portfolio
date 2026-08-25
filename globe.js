@@ -31,6 +31,24 @@ const initGlobe = () => {
   particles.rotation.z = 0.2;
   particles.rotation.x = 0.2;
   scene.add(particles);
+  // TECH RINGS
+  const ringsGroup = new THREE.Group();
+  scene.add(ringsGroup);
+  for(let i=0; i<3; i++) {
+    const ringGeo = new THREE.TorusGeometry(radius + 15 + (i * 8), 0.2, 8, 100);
+    const ringMat = new THREE.MeshBasicMaterial({ color: 0x00ffff, transparent: true, opacity: 0.15 });
+    const ring = new THREE.Mesh(ringGeo, ringMat);
+    ring.rotation.x = Math.random() * Math.PI;
+    ring.rotation.y = Math.random() * Math.PI;
+    ringsGroup.add(ring);
+    
+    // Add tiny orbiting tech data nodes on the ring
+    const orbitGeo = new THREE.SphereGeometry(2, 8, 8);
+    const orbitMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
+    const orbitNode = new THREE.Mesh(orbitGeo, orbitMat);
+    orbitNode.position.x = radius + 15 + (i * 8);
+    ring.add(orbitNode);
+  }
 
   // 2. TECH NODES
   const techData = [
@@ -167,9 +185,15 @@ const initGlobe = () => {
     // Always visible scale
     particles.scale.set(1, 1, 1);
     curvesGroup.scale.set(1, 1, 1);
+    
+    // Rotate rings
+    ringsGroup.children.forEach((ring, idx) => {
+      ring.rotation.z += 0.01 * (idx + 1);
+      ring.rotation.x += 0.005;
+    });
 
     // Rotation
-    particles.rotation.y += isHovering ? 0.001 : 0.003;
+    particles.rotation.y += isHovering ? 0.003 : 0.015;
     curvesGroup.rotation.copy(particles.rotation);
 
     // Vertex physics

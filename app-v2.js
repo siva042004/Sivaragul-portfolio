@@ -130,6 +130,20 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // 6.5 GLOBE ANIMATIONS
+  let titleAnimated = false;
+  ScrollTrigger.create({
+    trigger: '#globe-section',
+    start: "top 80%",
+    onEnter: () => {
+      if(!titleAnimated) {
+        gsap.fromTo('#globe-title .react-char', 
+          { y: 80, opacity: 0, rotationZ: 15 }, 
+          { y: 0, opacity: 1, rotationZ: 0, duration: 1.2, stagger: 0.05, ease: "back.out(1.7)" }
+        );
+        titleAnimated = true;
+      }
+    }
+  });
   ScrollTrigger.create({
     trigger: '#globe-section',
     start: "top 80%",
