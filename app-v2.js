@@ -115,6 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
     { id: '#stack', theme: 't-white' },
     { id: '#experience', theme: 't-gray' },
     { id: '#about', theme: 't-ivory' },
+    { id: '#globe-section', theme: 't-black' },
     { id: '#contact', theme: 't-black' }
   ];
   sections.forEach(sec => {
