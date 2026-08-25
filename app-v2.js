@@ -542,6 +542,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const csData = {
     "case-scheduler": {
       title: "DISTRIBUTED JOB SCHEDULER",
+      overview: "A highly scalable distributed job scheduling platform built to reliably orchestrate and execute millions of background tasks across multiple worker nodes.",
       problem: "Traditional cron jobs fail in distributed environments. We needed a system to decouple job submission from execution while ensuring exactly-once processing.",
       arch: "Client -> API Gateway -> Spring Boot Scheduler -> Kafka Queue -> Worker Nodes.",
       impl: "Implemented Kafka consumer groups for worker nodes to enable horizontal scaling.",
@@ -550,6 +551,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     "case-billing": {
       title: "SAAS BILLING ENGINE",
+      overview: "A multi-tenant billing architecture designed to process automated subscriptions, handle prorated upgrades, and securely manage invoicing without double-charging.",
       problem: "Handling prorated subscription changes and preventing duplicate charges.",
       arch: "Stripe Webhooks -> Idempotency Cache (Redis) -> PostgreSQL Ledger -> Invoice.",
       impl: "Built a transaction ledger that locks rows during processing.",
@@ -558,6 +560,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     "case-limiter": {
       title: "DISTRIBUTED RATE LIMITER",
+      overview: "A robust API gateway component that intelligently throttles incoming burst traffic across distributed systems using Redis-backed token bucket algorithms.",
       problem: "Public APIs were vulnerable to burst traffic. In-memory limiting fails at scale.",
       arch: "API Gateway -> Spring Boot Interceptor -> Redis Cluster (Lua Scripts).",
       impl: "Implemented token bucket algorithm using atomic Redis Lua scripts.",
